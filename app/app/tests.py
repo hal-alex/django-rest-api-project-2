@@ -21,3 +21,4 @@ class CalcTest(SimpleTestCase):
 
         self.assertEqual(res, -5)
 
+

@@ -76,7 +76,7 @@ class PublicApiTests(TestCase):
         }
         res = self.client.post(TOKEN_URL, payload)
 
-        self.assrtIn("token", res.data)
+        self.assertIn("token", res.data)
         self.assertEqual(res.status_code, status.HTTP_200_OK)
 
     def test_create_token_bad_credentials(self):

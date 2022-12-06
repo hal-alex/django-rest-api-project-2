@@ -17,6 +17,7 @@ from recipe.serializers import RecipeSerializer
 
 RECIPES_URL = reverse("recipe:recipe-list")
 
+
 def create_recipe(user, **params):
     """Helper function to create and return a sample recipe"""
 
@@ -70,7 +71,7 @@ class PrivateRecipeAPITests(TestCase):
         serializer = RecipeSerializer(recipes, many=True)
         self.assertEqual(res.status_code, status.HTTP_200_OK)
         self.assertEqual(res.data, serializer.data)
-    
+
     def test_recipe_list_limited_to_user(self):
         """Test list of recipes is limited to authenticated user"""
         other_user = get_user_model().objects.create_user(

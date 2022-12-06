@@ -19,7 +19,6 @@ services:
       - DB_NAME=devdb
       - DB_USER=devuser
       - DB_PASS=changeme
-      - SECRET_KEY=${DJANGO_SECRET_KEY}
     depends_on:
       - db
   

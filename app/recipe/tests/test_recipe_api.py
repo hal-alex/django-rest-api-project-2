@@ -308,13 +308,13 @@ class PrivateRecipeAPITests(TestCase):
                 user=self.user,
             ).exists()
             self.assertTrue(exists)
-    
+
     def test_create_recipe_with_existing_ingredients(self):
         """Test creating a new recipe with existing ingredients"""
         ingredient = Ingredient.objects.create(user=self.user, name="Lemon")
-        payload ={
+        payload = {
             "title": "Vietnamese Soup",
-            "time_minutes": 25, 
+            "time_minutes": 25,
             "price": "2.55",
             "ingredients": [{"name": "Lemon"}, {"name": "Fish Sauce"}],
         }

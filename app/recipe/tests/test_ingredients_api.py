@@ -27,7 +27,7 @@ class PublicIngredientsApiTests(TestCase):
 
     def setUp(self):
         self.client = APIClient()
-    
+
     def test_auth_required(self):
         """Test auth is required for retrieving ingredients"""
         res = self.client.get(INGREDIENTS_URL)
@@ -42,7 +42,7 @@ class PrivateIngredientsApiTests(TestCase):
         self.user = create_user()
         self.client = APIClient()
         self.client.force_authenticate(self.user)
-    
+
     def test_retrieve_ingredients(self):
         """Test retrieving a list of ingredients"""
         Ingredient.objects.create(user=self.user, name="Kale")
@@ -54,7 +54,7 @@ class PrivateIngredientsApiTests(TestCase):
         serializer = IngredientSerializer(ingredients, many=True)
         self.assertEqual(res.status_code, status.HTTP_200_OK)
         self.assertEqual(res.data, serializer.data)
-    
+
     def test_ingredients_limited_to_user(self):
         """Test list of ingredients is limited to authenticated user"""
         user2 = create_user(email="user2@example.com")
@@ -67,4 +67,3 @@ class PrivateIngredientsApiTests(TestCase):
         self.assertEqual(len(res.data), 1)
         self.assertEqual(res.data[0]["name"], ingredient.name)
         self.assertEqual(res.data[0]["id"], ingredient.id)
-
